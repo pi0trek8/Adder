@@ -1,4 +1,5 @@
 from prepocessingStage import PreprocessingStage
+from sumComputationStage import SumComputationStage
 
 if __name__ == '__main__':
     a = [0, 0, 1, 1, 0, 0, 1]
@@ -13,11 +14,21 @@ if __name__ == '__main__':
     print(a)
     print(b)
     print(k)
-
+    print()
     print(g)
     print(p)
     print(h)
-
+    print()
     print(g_prim)
     print(p_prim)
     print(h_prim)
+
+    h = [1, 0, 0, 1, 0, 1, 0]
+    h_prim = [0, 0, 0, 0, 1, 1, 0]
+    c = [0, 0, 0, 0, 0, 0, 1]
+    c_prim = [0, 1, 0, 0, 0, 0, 0]
+
+    sumComputationStage = SumComputationStage()
+    s = sumComputationStage.compute_s(h, h_prim, c, c_prim)
+    print()
+    print(s)
