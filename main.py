@@ -1,10 +1,5 @@
 from prepocessingStage import PreprocessingStage
 
-
-def print_hi(name):
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
 if __name__ == '__main__':
     a = [0, 0, 1, 1, 0, 0, 1]
     b = [1, 1, 0, 0, 0, 0, 0]

@@ -1,19 +1,21 @@
+import gate
+
+
 class PreprocessingStage:
     @staticmethod
     def hashed_cells(a: list, b: list, k: list):
-        g = [0 for i in range(len(a) or len(b))]
-        p = [0 for i in range(len(a) or len(b))]
-        h = [0 for i in range(len(a) or len(b))]
-        a_prim = [0 for i in range(len(a) or len(b))]
-        b_prim = [0 for i in range(len(a) or len(b))]
+        g = [0] * len(a)
+        p = [0] * len(a)
+        h = [0] * len(a)
+        a_prim = [0] * len(a)
+        b_prim = [0] * len(a)
 
         for i in range(len(a) or len(b)):
-            g[i] = 1 if a[i] and b[i] else 0
-            p[i] = 1 if a[i] or b[i] else 0
-            h[i] = 1 if not g[i] and p[i] else 0
+            g[i] = gate.and_gate(a[i], b[i])
+            p[i] = gate.or_gate(a[i], b[i])
+            h[i] = gate.and_gate(not g[i], p[i])
 
             a_prim[i] = h[i] if k[i] == 0 else (0 if not h[i] else 1)
-
             if i != len(a) - 1:
                 b_prim[i + 1] = p[i] if k[i] == 1 else g[i]
 
@@ -21,13 +23,13 @@ class PreprocessingStage:
 
     @staticmethod
     def envelop_cells(a_prim: list, b_prim: list):
-        g_prim = [0 for i in range(len(a_prim) or len(b_prim))]
-        p_prim = [0 for i in range(len(a_prim) or len(b_prim))]
-        h_prim = [0 for i in range(len(a_prim) or len(b_prim))]
+        g_prim = [0] * len(a_prim)
+        p_prim = [0] * len(a_prim)
+        h_prim = [0] * len(a_prim)
 
         for i in range(len(a_prim)):
-            g_prim[i] = 1 if a_prim[i] and b_prim[i] else 0
-            p_prim[i] = 1 if a_prim[i] or b_prim[i] else 0
-            h_prim[i] = 1 if not g_prim[i] and p_prim[i] else 0
+            g_prim[i] = gate.and_gate(a_prim[i], b_prim[i])
+            p_prim[i] = gate.or_gate(a_prim[i], b_prim[i])
+            h_prim[i] = gate.and_gate(not g_prim[i], p_prim[i])
 
         return g_prim, p_prim, h_prim
