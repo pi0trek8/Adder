@@ -15,7 +15,11 @@ class PreprocessingStage:
             p[i] = gate.or_gate(a[i], b[i])
             h[i] = gate.and_gate(not g[i], p[i])
 
-            a_prim[i] = h[i] if k[i] == 0 else (0 if not h[i] else 1)
+            if k[i] == 0:
+                a_prim[i] = h[i]
+            else:
+                a_prim[i] = int(not h[i])
+
             if i != len(a) - 1:
                 b_prim[i + 1] = p[i] if k[i] == 1 else g[i]
 

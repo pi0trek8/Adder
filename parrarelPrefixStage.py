@@ -16,7 +16,7 @@ def process(g: list, p: list, g_prim: list, p_prim: list):
         double_dot_num.append(hamming_weight(i))
     print(double_dot_num)
     for row_num in range(math.ceil(math.log2(len(g)))):
-        for i in range(len(g)):
+        for i in reversed(range(len(g))):
             if double_dot_num[i] <= 0:
                 continue
             bin_num = [*bin(i).lstrip('0b')]
@@ -24,9 +24,9 @@ def process(g: list, p: list, g_prim: list, p_prim: list):
 
             if bin_num[row_num] == '1':
                 p[i], g[i], p_prim[i], g_prim[i] = gate.parallel_prefix_double_node(p[i], g[i], p[i - 1], g[i - 1],
-                                                                                    p_prim[i - 1], g_prim[i - 1],
-                                                                                    p_prim[i],
-                                                                                    g_prim[i])
+                                                                                    p_prim[i], g_prim[i],
+                                                                                    p_prim[i - 1],
+                                                                                    g_prim[i - 1])
                 double_dot_num[i] -= 1
 
     return g, p, g_prim, p_prim
