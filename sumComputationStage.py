@@ -1,10 +1,11 @@
 from gate import xor_gate
 from gate import buffer
+from gate import or_gate
 
 
 def compute_s(h: list, h_prim: list, carry: list, carry_prim: list) -> list:
     _sum = []
-    c_out = carry_prim[-1]
+    c_out = or_gate(carry_prim[-1], carry[-1])
 
     for i in range(len(h)):
         if i == 0:
