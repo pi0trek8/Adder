@@ -1,6 +1,6 @@
 import preprocessingStage
 import sumComputationStage
-import parrarelPrefixStage
+import parallelPrefixStage
 import sys
 
 
